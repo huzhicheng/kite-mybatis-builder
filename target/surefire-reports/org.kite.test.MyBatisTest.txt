@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.kite.test.MyBatisTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.159 sec - in org.kite.test.MyBatisTest
