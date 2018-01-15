@@ -26,7 +26,7 @@ mapper接口类包名：mapper 接口类的包名
 
 #### 方式2：
 
-下载 `kite-mybatis-builder.jar `, 运行命令 `java -jar -Dserver.port=[port] kite-mybatis-builder.jar` 或者 `java -jar kite-mybatis-builder.jar ` 默认在 9090 端口运行
+下载  [kite-mybatis-builder.jar](https://github.com/huzhicheng/kite-mybatis-builder/releases/download/v1.0/kite-mybats-builder.jar), 运行命令 `java -jar -Dserver.port=[port] kite-mybatis-builder.jar` 或者 `java -jar kite-mybatis-builder.jar ` 默认在 9090 端口运行
 
 
 
