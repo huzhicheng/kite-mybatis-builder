@@ -28,13 +28,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="./">首页</a>
-                </li>
-                <li><a href="docs/">使用文档</a>
-                </li>
-                <li><a href="docs/getting-started/">mybatis 使用说明</a>
-                </li>
-                <li><a href="docs/api/">关于</a>
+
+                <li><a href="https://github.com/huzhicheng/kite-mybatis-builder/blob/master/README.md">关于</a>
                 </li>
 
             </ul>
