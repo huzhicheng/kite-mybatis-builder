@@ -52,6 +52,17 @@ mapper接口类包名：mapper 接口类的包名
 
 ![mybatis-4](https://raw.githubusercontent.com/huzhicheng/imgs/master/mybatis-4.png)
 
+## 支持分页查询
+
+例如：
+```
+        UserExample userExample = new UserExample();
+        userExample.setLimit(5);
+        userExample.setOffset(5);
+        userExample.setOrderByClause(" id desc ");
+        List<User> users = userMapper.selectByExample(userExample);
+```
+
 ![微信公众号二维码](https://raw.githubusercontent.com/huzhicheng/imgs/master/%E5%8F%A4%E6%97%B6%E7%9A%84%E9%A3%8E%E7%AD%9D.jpg)
 
    
