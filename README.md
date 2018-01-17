@@ -53,7 +53,7 @@ mapper接口类包名：mapper 接口类的包名
 ![mybatis-4](https://raw.githubusercontent.com/huzhicheng/imgs/master/mybatis-4.png)
 
 ## 支持分页查询
-
+分页插件来自：https://github.com/wucao/mybatis-generator-limit-plugin
 例如：
 ```
         UserExample userExample = new UserExample();
