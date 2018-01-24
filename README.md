@@ -36,20 +36,33 @@ mapper接口类包名：mapper 接口类的包名
 
 1. 默认打开之后，点击“新建项目”。
 
-![mybatis-1](http://hexo.moonkite.cn/mybatis/mybatis-1.png)
+![mybatis-1](https://raw.githubusercontent.com/huzhicheng/imgs/master/mybatis-1.png)
 
 2. 在弹出的项目配置界面，填写上面提到的配置参数
 
-   ![mybatis-2](http://hexo.moonkite.cn/mybatis/mybatis-2.png)
+![mybatis-2](https://raw.githubusercontent.com/huzhicheng/imgs/master/mybatis-2.png)
 
 3. 选择要生成的表，并可在后面配置实体名称，默认规则是各单词首字母大写。
 
-   ![mybatis-3](http://hexo.moonkite.cn/mybatis/mybatis-3.png)
+![mybatis-3](https://raw.githubusercontent.com/huzhicheng/imgs/master/mybatis-3.png)
 
 4. 点击生成按钮，会根据生成结果提示成功或失败。
 
 5. 生成过的项目会在首页列出来，下次如果还需要生成此数据库的表，可以在之前的项目中重新配置选择即可。
 
-   ![mybatis-4](http://hexo.moonkite.cn/mybatis/mybatis-4.png)
+![mybatis-4](https://raw.githubusercontent.com/huzhicheng/imgs/master/mybatis-4.png)
+
+## 支持分页查询
+分页插件来自：https://github.com/wucao/mybatis-generator-limit-plugin
+例如：
+```
+        UserExample userExample = new UserExample();
+        userExample.setLimit(5);
+        userExample.setOffset(5);
+        userExample.setOrderByClause(" id desc ");
+        List<User> users = userMapper.selectByExample(userExample);
+```
+
+![微信公众号二维码](https://raw.githubusercontent.com/huzhicheng/imgs/master/%E5%8F%A4%E6%97%B6%E7%9A%84%E9%A3%8E%E7%AD%9D.jpg)
 
    
