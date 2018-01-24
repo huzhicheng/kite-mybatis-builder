@@ -9,6 +9,7 @@ import org.kite.mybatis.builder.util.IDataBaseOperator;
 import org.kite.mybatis.builder.util.ServiceException;
 import org.kite.mybatis.extend.MysqlJavaTypeResolverImpl;
 import org.kite.mybatis.extend.Plugins.MySqlLimitPlugin;
+import org.kite.mybatis.extend.Plugins.SerializablePlugin;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.DefaultShellCallback;
@@ -90,13 +91,23 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
         limitPlugin.setConfigurationType(MySqlLimitPlugin.class.getName());
         context.addPluginConfiguration(limitPlugin);
 
-        // 代码注释控制
+        /**
+         * 序列化
+         */
+        PluginConfiguration serializablePlugin = new PluginConfiguration();
+        serializablePlugin.setConfigurationType(SerializablePlugin.class.getName());
+        context.addPluginConfiguration(serializablePlugin);
+
+        /**
+         * 代码注释控制
+         */
         CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
         commentGeneratorConfiguration.addProperty("suppressDate","true");
         context.setCommentGeneratorConfiguration(commentGeneratorConfiguration);
 
-        // 数据库连接配置
-
+        /**
+         *  数据库连接配置
+         */
         String connectionUrl = projectConfig.getConnectionURL();
         String driverClass = projectConfig.getDriverClass();
         String username = projectConfig.getUserId();
@@ -108,7 +119,9 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
         jdbcConnectionConfiguration.setPassword(password);
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
 
-        // 设置 JavaTypeResolver
+        /**
+         * 设置 JavaTypeResolver
+         */
         JavaTypeResolverConfiguration javaTypeResolverConfiguration = new JavaTypeResolverConfiguration();
 
         MysqlJavaTypeResolverImpl javaTypeResolverDefault = new MysqlJavaTypeResolverImpl();
@@ -118,7 +131,9 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
         javaTypeResolverConfiguration.addProperty("forceBigDecimals","false");
         context.setJavaTypeResolverConfiguration(javaTypeResolverConfiguration);
 
-        // model 映射
+        /**
+         * model 映射
+         */
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
         String targetModelPackage = projectConfig.getTargetModelPackage();
         javaModelGeneratorConfiguration.setTargetPackage(targetModelPackage);
@@ -127,7 +142,9 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
         javaModelGeneratorConfiguration.addProperty("trimStrings","true");
         context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
 
-        // mapper.xml 映射
+        /**
+         * mapper.xml 映射
+         */
         SqlMapGeneratorConfiguration sqlMapGeneratorConfiguration = new SqlMapGeneratorConfiguration();
         String targetMapperPackage = projectConfig.getTargetMapperPackage();
         sqlMapGeneratorConfiguration.setTargetPackage(targetMapperPackage);
@@ -135,7 +152,9 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
         sqlMapGeneratorConfiguration.addProperty("enableSubPackages","true");
         context.setSqlMapGeneratorConfiguration(sqlMapGeneratorConfiguration);
 
-        // mapper 接口文件映射
+        /**
+         * mapper 接口文件映射
+         */
         JavaClientGeneratorConfiguration javaClientGeneratorConfiguration = new JavaClientGeneratorConfiguration();
         String targetMapperInterfacePackage = projectConfig.getTargetMapperInterfacePackage();
         javaClientGeneratorConfiguration.setTargetPackage(targetMapperInterfacePackage);
