@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS project_config (
   `targetModelPackage` varchar(100) DEFAULT '',
   `targetMapperPackage` varchar(100) DEFAULT '',
   `targetMapperInterfacePackage` varchar(100) DEFAULT '',
-  `isOverwrite` bit(1) DEFAULT 1
+  `isOverwrite` bit(1) DEFAULT 1,
+  `removePrefix` varchar(100) DEFAULT ''
 );

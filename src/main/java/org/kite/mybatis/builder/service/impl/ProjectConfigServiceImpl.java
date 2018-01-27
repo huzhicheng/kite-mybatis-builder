@@ -58,7 +58,7 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
     }
 
     @Override
-    public List<TableInfo> getTables(Integer id){
+    public List<TableInfo> getTables(Integer id,String removePrefix){
         List<TableInfo> tableInfos = new ArrayList<>();
         ProjectConfig projectConfig = get(id);
         String driverClass = projectConfig.getDriverClass();
@@ -67,7 +67,7 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
         for(String table: tables){
             TableInfo tableInfo = new TableInfo();
             tableInfo.setTableName(table);
-            tableInfo.setEntityName(toUpperCase(table));
+            tableInfo.setEntityName(toUpperCase(table,removePrefix));
             tableInfos.add(tableInfo);
         }
         return tableInfos;
@@ -196,7 +196,10 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
 
     private static  Pattern linePattern = Pattern.compile("_(\\w)");
 
-    private String toUpperCase(String tableName){
+    private String toUpperCase(String tableName,String removePrefix){
+        if(tableName.startsWith(removePrefix)){
+            tableName = tableName.replace(removePrefix,"");
+        }
         tableName = tableName.toLowerCase();
         Matcher matcher = linePattern.matcher(tableName);
         StringBuffer sb = new StringBuffer();

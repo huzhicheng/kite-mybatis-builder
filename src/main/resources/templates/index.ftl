@@ -153,6 +153,11 @@
                             <label>是否覆盖</label>
                             <input type="checkbox" v-model="step1Form.overwrite">
                         </div>
+
+                        <div class="form-group col-md-6 form-inline">
+                            <label>去掉前缀</label>
+                            <input type="text" placeholder="例如：w_" v-model="step1Form.removePrefix" >
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -162,6 +167,7 @@
                 </form>
 
                 <form class="step2" v-if="step2Visible">
+
                     <ul class="list-group">
                         <li class="list-group-item">
                             <input type="checkbox" value="全选" v-model="isSelectAll" @change="selectedAll"/>全选 </li>
@@ -301,6 +307,10 @@
                             <label>是否覆盖</label>
                             <input type="checkbox" v-model="editForm.overwrite" >
                         </div>
+                        <div class="form-group col-md-6 form-inline">
+                            <label>去掉前缀</label>
+                            <input type="text" placeholder="例如：w_" v-model="editForm.removePrefix" >
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -310,6 +320,7 @@
                 </form>
 
                 <form class="step2" v-if="editStep2Visible">
+
                     <ul class="list-group">
                         <li class="list-group-item">  <input type="checkbox" value="全选" v-model="isEditSelectAll" @change="editSelectedAll"/>全选 </li>
                         <li v-for="(item,index) in tables" class="list-group-item form-inline">
@@ -389,7 +400,8 @@
                     connectionURL:'jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8',
                     userId:'',
                     password:'',
-                    overwrite:true
+                    overwrite:true,
+                    removePrefix:''
                 },
                 editForm:{
                     id:0,
@@ -404,7 +416,8 @@
                     connectionURL:'',
                     userId:'',
                     password:'',
-                    overwrite:true
+                    overwrite:true,
+                    removePrefix:''
                 },
                 configList:[],
                 tables:[],
@@ -445,7 +458,7 @@
                 $.ajax({
                     type:"get",
                     url:"/getTables",
-                    data:{"id":id},
+                    data:{"id":id,"removePrefix":self.editForm.removePrefix},
                     success:function (result) {
                         self.tables = result;
                         for(var i = 0;i<self.tables.length;i++){
@@ -459,7 +472,7 @@
                 $.ajax({
                     type:"get",
                     url:"/getTables",
-                    data:{"id":id},
+                    data:{"id":id,"removePrefix":self.step1Form.removePrefix},
                     success:function (result) {
                         self.tables = result;
                         for(var i = 0;i<self.tables.length;i++){

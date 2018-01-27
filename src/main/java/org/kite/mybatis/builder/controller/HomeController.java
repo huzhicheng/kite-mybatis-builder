@@ -72,8 +72,8 @@ public class HomeController {
 
     @RequestMapping(value = "getTables",method = RequestMethod.GET)
     @ResponseBody
-    public Object getTables(Integer id){
-        List<TableInfo> tables = projectConfigService.getTables(id);
+    public Object getTables(Integer id,String removePrefix){
+        List<TableInfo> tables = projectConfigService.getTables(id,removePrefix);
         return tables;
     }
 

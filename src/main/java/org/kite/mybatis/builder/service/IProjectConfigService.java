@@ -21,7 +21,7 @@ public interface IProjectConfigService {
 
     ProjectConfig update(ProjectConfig projectConfig);
 
-    List<TableInfo> getTables(Integer id);
+    List<TableInfo> getTables(Integer id,String removePrefix);
 
     List<String> build(String tableList,String entityList,Integer id);
 

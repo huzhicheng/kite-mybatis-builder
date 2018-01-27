@@ -53,6 +53,9 @@ public class ProjectConfig {
     @Column(name = "ISOVERWRITE")
     private Boolean isOverwrite;
 
+    @Column(name = "REMOVEPREFIX")
+    private String removePrefix;
+
     public Integer getId() {
         return id;
     }
@@ -155,5 +158,13 @@ public class ProjectConfig {
 
     public void setOverwrite(Boolean overwrite) {
         isOverwrite = overwrite;
+    }
+
+    public String getRemovePrefix() {
+        return removePrefix;
+    }
+
+    public void setRemovePrefix(String removePrefix) {
+        this.removePrefix = removePrefix;
     }
 }
