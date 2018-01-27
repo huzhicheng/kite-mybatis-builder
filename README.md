@@ -63,7 +63,7 @@ mapper接口类包名：mapper 接口类的包名
         List<User> users = userMapper.selectByExample(userExample);
 ```
 
-## 支持去掉指定表明前缀
+## 支持去掉指定表名前缀
 例如表名统一以 w_ 为前缀，则在配置界面可以输入去掉的前缀为 w_，则读取数据库表后，默认生成的实体名字就是去掉前缀的。
 例如表名 w_user，如果不去掉前缀，默认生成的实体名为 WUser。去掉前缀后就是 User。
 ![微信公众号二维码](https://raw.githubusercontent.com/huzhicheng/imgs/master/%E5%8F%A4%E6%97%B6%E7%9A%84%E9%A3%8E%E7%AD%9D.jpg)
