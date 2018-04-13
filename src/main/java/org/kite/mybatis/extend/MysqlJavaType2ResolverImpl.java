@@ -13,12 +13,12 @@ import java.sql.Types;
 import java.util.*;
 
 /**
- * MysqlJavaTypeResolverImpl
+ * MysqlJavaType2ResolverImpl
  *
  * @author fengzheng
- * @date 2018/1/5
+ * @date 2018/4/13
  */
-public class MysqlJavaTypeResolverImpl implements JavaTypeResolver {
+public class MysqlJavaType2ResolverImpl implements JavaTypeResolver {
 
     protected List<String> warnings;
 
@@ -28,84 +28,83 @@ public class MysqlJavaTypeResolverImpl implements JavaTypeResolver {
 
     protected boolean forceBigDecimals;
 
-    protected Map<Integer, JdbcTypeInformation> typeMap;
+    protected Map<Integer, MysqlJavaType2ResolverImpl.JdbcTypeInformation> typeMap;
 
 
-
-    public MysqlJavaTypeResolverImpl() {
+    public MysqlJavaType2ResolverImpl() {
         super();
         properties = new Properties();
-        typeMap = new HashMap<Integer, JdbcTypeInformation>();
+        typeMap = new HashMap<Integer, MysqlJavaType2ResolverImpl.JdbcTypeInformation>();
 
-        typeMap.put(Types.ARRAY, new JdbcTypeInformation("ARRAY", //$NON-NLS-1$
+        typeMap.put(Types.ARRAY, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("ARRAY", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.BIGINT, new JdbcTypeInformation("BIGINT", //$NON-NLS-1$
+        typeMap.put(Types.BIGINT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("BIGINT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Long.class.getName())));
-        typeMap.put(Types.BINARY, new JdbcTypeInformation("BINARY", //$NON-NLS-1$
+        typeMap.put(Types.BINARY, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("BINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
-        typeMap.put(Types.BIT, new JdbcTypeInformation("BIT", //$NON-NLS-1$
+        typeMap.put(Types.BIT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("BIT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Boolean.class.getName())));
-        typeMap.put(Types.BLOB, new JdbcTypeInformation("BLOB", //$NON-NLS-1$
+        typeMap.put(Types.BLOB, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("BLOB", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
-        typeMap.put(Types.BOOLEAN, new JdbcTypeInformation("BOOLEAN", //$NON-NLS-1$
+        typeMap.put(Types.BOOLEAN, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("BOOLEAN", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Boolean.class.getName())));
-        typeMap.put(Types.CHAR, new JdbcTypeInformation("CHAR", //$NON-NLS-1$
+        typeMap.put(Types.CHAR, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("CHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.CLOB, new JdbcTypeInformation("CLOB", //$NON-NLS-1$
+        typeMap.put(Types.CLOB, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("CLOB", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.DATALINK, new JdbcTypeInformation("DATALINK", //$NON-NLS-1$
+        typeMap.put(Types.DATALINK, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("DATALINK", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.DATE, new JdbcTypeInformation("DATE", //$NON-NLS-1$
+        typeMap.put(Types.DATE, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("DATE", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Date.class.getName())));
-        typeMap.put(Types.DECIMAL, new JdbcTypeInformation("DECIMAL", //$NON-NLS-1$
+        typeMap.put(Types.DECIMAL, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("DECIMAL", //$NON-NLS-1$
                 new FullyQualifiedJavaType(BigDecimal.class.getName())));
-        typeMap.put(Types.DISTINCT, new JdbcTypeInformation("DISTINCT", //$NON-NLS-1$
+        typeMap.put(Types.DISTINCT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("DISTINCT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.DOUBLE, new JdbcTypeInformation("DOUBLE", //$NON-NLS-1$
+        typeMap.put(Types.DOUBLE, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("DOUBLE", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Double.class.getName())));
-        typeMap.put(Types.FLOAT, new JdbcTypeInformation("FLOAT", //$NON-NLS-1$
+        typeMap.put(Types.FLOAT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("FLOAT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Double.class.getName())));
-        typeMap.put(Types.INTEGER, new JdbcTypeInformation("INTEGER", //$NON-NLS-1$
+        typeMap.put(Types.INTEGER, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("INTEGER", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Integer.class.getName())));
-        typeMap.put(Types.JAVA_OBJECT, new JdbcTypeInformation("JAVA_OBJECT", //$NON-NLS-1$
+        typeMap.put(Types.JAVA_OBJECT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("JAVA_OBJECT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.LONGNVARCHAR, new JdbcTypeInformation("LONGNVARCHAR", //$NON-NLS-1$
+        typeMap.put(Types.LONGNVARCHAR, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("LONGNVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.LONGVARBINARY, new JdbcTypeInformation(
+        typeMap.put(Types.LONGVARBINARY, new MysqlJavaType2ResolverImpl.JdbcTypeInformation(
                 "LONGVARBINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
-        typeMap.put(Types.LONGVARCHAR, new JdbcTypeInformation("LONGVARCHAR", //$NON-NLS-1$
+        typeMap.put(Types.LONGVARCHAR, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("LONGVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.NCHAR, new JdbcTypeInformation("NCHAR", //$NON-NLS-1$
+        typeMap.put(Types.NCHAR, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("NCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.NCLOB, new JdbcTypeInformation("NCLOB", //$NON-NLS-1$
+        typeMap.put(Types.NCLOB, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("NCLOB", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.NVARCHAR, new JdbcTypeInformation("NVARCHAR", //$NON-NLS-1$
+        typeMap.put(Types.NVARCHAR, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("NVARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
-        typeMap.put(Types.NULL, new JdbcTypeInformation("NULL", //$NON-NLS-1$
+        typeMap.put(Types.NULL, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("NULL", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.NUMERIC, new JdbcTypeInformation("NUMERIC", //$NON-NLS-1$
+        typeMap.put(Types.NUMERIC, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("NUMERIC", //$NON-NLS-1$
                 new FullyQualifiedJavaType(BigDecimal.class.getName())));
-        typeMap.put(Types.OTHER, new JdbcTypeInformation("OTHER", //$NON-NLS-1$
+        typeMap.put(Types.OTHER, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("OTHER", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.REAL, new JdbcTypeInformation("REAL", //$NON-NLS-1$
+        typeMap.put(Types.REAL, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("REAL", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Float.class.getName())));
-        typeMap.put(Types.REF, new JdbcTypeInformation("REF", //$NON-NLS-1$
+        typeMap.put(Types.REF, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("REF", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.SMALLINT, new JdbcTypeInformation("SMALLINT", //$NON-NLS-1$
+        typeMap.put(Types.SMALLINT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("SMALLINT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Short.class.getName())));
-        typeMap.put(Types.STRUCT, new JdbcTypeInformation("STRUCT", //$NON-NLS-1$
+        typeMap.put(Types.STRUCT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("STRUCT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Object.class.getName())));
-        typeMap.put(Types.TIME, new JdbcTypeInformation("TIME", //$NON-NLS-1$
+        typeMap.put(Types.TIME, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("TIME", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Date.class.getName())));
         typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation("TIMESTAMP", //$NON-NLS-1$
-                new FullyQualifiedJavaType(Timestamp.class.getName())));
+                new FullyQualifiedJavaType(Date.class.getName())));
 
-        typeMap.put(Types.TINYINT, new JdbcTypeInformation("TINYINT", //$NON-NLS-1$
+        typeMap.put(Types.TINYINT, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("TINYINT", //$NON-NLS-1$
                 new FullyQualifiedJavaType(Byte.class.getName())));
-        typeMap.put(Types.VARBINARY, new JdbcTypeInformation("VARBINARY", //$NON-NLS-1$
+        typeMap.put(Types.VARBINARY, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("VARBINARY", //$NON-NLS-1$
                 new FullyQualifiedJavaType("byte[]"))); //$NON-NLS-1$
-        typeMap.put(Types.VARCHAR, new JdbcTypeInformation("VARCHAR", //$NON-NLS-1$
+        typeMap.put(Types.VARCHAR, new MysqlJavaType2ResolverImpl.JdbcTypeInformation("VARCHAR", //$NON-NLS-1$
                 new FullyQualifiedJavaType(String.class.getName())));
     }
 
@@ -121,7 +120,7 @@ public class MysqlJavaTypeResolverImpl implements JavaTypeResolver {
     public FullyQualifiedJavaType calculateJavaType(
             IntrospectedColumn introspectedColumn) {
         FullyQualifiedJavaType answer = null;
-        JdbcTypeInformation jdbcTypeInformation = typeMap
+        MysqlJavaType2ResolverImpl.JdbcTypeInformation jdbcTypeInformation = typeMap
                 .get(introspectedColumn.getJdbcType());
 
         if (jdbcTypeInformation != null) {
@@ -179,7 +178,7 @@ public class MysqlJavaTypeResolverImpl implements JavaTypeResolver {
     @Override
     public String calculateJdbcTypeName(IntrospectedColumn introspectedColumn) {
         String answer = null;
-        JdbcTypeInformation jdbcTypeInformation = typeMap
+        MysqlJavaType2ResolverImpl.JdbcTypeInformation jdbcTypeInformation = typeMap
                 .get(introspectedColumn.getJdbcType());
 
         if (jdbcTypeInformation != null) {

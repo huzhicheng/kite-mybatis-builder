@@ -160,6 +160,14 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="form-group col-md-6 form-inline">
+                            <label>是否Timestamp转为Date</label>
+                            <input type="checkbox" v-model="step1Form.timestamp2Date" >
+                        </div>
+
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <button type="button" id="btn-next" @click="saveAndNext" class="btn btn-primary">下一步</button>
@@ -313,6 +321,14 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="form-group col-md-6 form-inline">
+                            <label>是否Timestamp转为Date</label>
+                            <input type="checkbox" v-model="editForm.timestamp2Date" >
+                        </div>
+
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <button type="button" @click="confirmAndNext" class="btn btn-primary">下一步</button>
@@ -401,7 +417,8 @@
                     userId:'',
                     password:'',
                     overwrite:true,
-                    removePrefix:''
+                    removePrefix:'',
+                    timestamp2Date:false
                 },
                 editForm:{
                     id:0,
@@ -417,7 +434,8 @@
                     userId:'',
                     password:'',
                     overwrite:true,
-                    removePrefix:''
+                    removePrefix:'',
+                    timestamp2Date:false
                 },
                 configList:[],
                 tables:[],
@@ -580,7 +598,7 @@
                 this.setCheckboxesStatus(this.isSelectAll);
             },
             editSelectedAll(){
-                this.setCheckboxesStatus(this.isEditSelectAll);
+                this.setEditCheckboxesStatus(this.isEditSelectAll);
             },
             closeResult(){
                 this.isShowResult = false;

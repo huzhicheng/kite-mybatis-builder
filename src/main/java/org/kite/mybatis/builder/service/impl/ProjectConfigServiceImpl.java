@@ -7,6 +7,7 @@ import org.kite.mybatis.builder.service.IProjectConfigService;
 import org.kite.mybatis.builder.util.DataBaseOperatorFactory;
 import org.kite.mybatis.builder.util.IDataBaseOperator;
 import org.kite.mybatis.builder.util.ServiceException;
+import org.kite.mybatis.extend.MysqlJavaType2ResolverImpl;
 import org.kite.mybatis.extend.MysqlJavaTypeResolverImpl;
 import org.kite.mybatis.extend.Plugins.MySqlLimitPlugin;
 import org.kite.mybatis.extend.Plugins.SerializablePlugin;
@@ -124,8 +125,15 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
          */
         JavaTypeResolverConfiguration javaTypeResolverConfiguration = new JavaTypeResolverConfiguration();
 
-        MysqlJavaTypeResolverImpl javaTypeResolverDefault = new MysqlJavaTypeResolverImpl();
-        String javaTypeResolverType = javaTypeResolverDefault.getClass().getName();
+        String javaTypeResolverType = "";
+        if(projectConfig.getTimestamp2Date()) {
+            MysqlJavaType2ResolverImpl javaType2Resolver = new MysqlJavaType2ResolverImpl();
+            javaTypeResolverType = javaType2Resolver.getClass().getName();
+        }else{
+            MysqlJavaTypeResolverImpl javaTypeResolverDefault = new MysqlJavaTypeResolverImpl();
+            javaTypeResolverType = javaTypeResolverDefault.getClass().getName();
+        }
+
         System.out.println(javaTypeResolverType);
         javaTypeResolverConfiguration.setConfigurationType(javaTypeResolverType);
         javaTypeResolverConfiguration.addProperty("forceBigDecimals","false");

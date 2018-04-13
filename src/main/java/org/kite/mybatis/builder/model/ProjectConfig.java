@@ -56,6 +56,10 @@ public class ProjectConfig {
     @Column(name = "REMOVEPREFIX")
     private String removePrefix;
 
+
+    @Column(name = "ISTIMESTAMP2DATE")
+    private Boolean isTimestamp2Date;
+
     public Integer getId() {
         return id;
     }
@@ -166,5 +170,13 @@ public class ProjectConfig {
 
     public void setRemovePrefix(String removePrefix) {
         this.removePrefix = removePrefix;
+    }
+
+    public Boolean getTimestamp2Date() {
+        return isTimestamp2Date;
+    }
+
+    public void setTimestamp2Date(Boolean timestamp2Date) {
+        isTimestamp2Date = timestamp2Date;
     }
 }

@@ -34,18 +34,6 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value = "insert",method = RequestMethod.GET)
-    @ResponseBody
-    public Object insert(){
-        ProjectConfig projectConfig = new ProjectConfig();
-        //projectConfig.setId(1);
-        projectConfig.setTargetProject("h");
-        projectConfig.setConnectionURL("dd");
-        projectConfig.setDriverClass("jdcb");
-        ProjectConfig afterProjectConfig = projectConfigService.insert(projectConfig);
-        return afterProjectConfig;
-    }
-
     @RequestMapping(value = "createConfig",method = RequestMethod.GET)
     @ResponseBody
     public Object createConfig(ProjectConfig projectConfig){

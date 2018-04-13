@@ -12,5 +12,6 @@ CREATE TABLE IF NOT EXISTS project_config (
   `targetMapperPackage` varchar(100) DEFAULT '',
   `targetMapperInterfacePackage` varchar(100) DEFAULT '',
   `isOverwrite` bit(1) DEFAULT 1,
-  `removePrefix` varchar(100) DEFAULT ''
+  `removePrefix` varchar(100) DEFAULT '',
+  `isTimestamp2Date` bit(1) DEFAULT 0
 );
