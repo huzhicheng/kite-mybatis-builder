@@ -103,7 +103,10 @@ public class ProjectConfigServiceImpl implements IProjectConfigService{
          * 代码注释控制
          */
         CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
-        commentGeneratorConfiguration.addProperty("suppressDate","true");
+        Boolean isRemoveAllComments = projectConfig.getSuppressAllComments();
+        String isComments = isRemoveAllComments.toString();
+        commentGeneratorConfiguration.addProperty("suppressDate",isComments);
+        commentGeneratorConfiguration.addProperty("suppressAllComments",isComments);
         context.setCommentGeneratorConfiguration(commentGeneratorConfiguration);
 
         /**
